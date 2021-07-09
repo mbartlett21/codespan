@@ -212,7 +212,7 @@ impl<'writer, 'config> Renderer<'writer, 'config> {
         self.reset()?;
 
         write!(self, " ")?;
-        self.snippet_locus(&locus)?;
+        self.snippet_locus(locus)?;
 
         writeln!(self)?;
 
@@ -565,7 +565,7 @@ impl<'writer, 'config> Renderer<'writer, 'config> {
                             }
                             MultiLabel::Top(..) if multi_label_index == *i => {
                                 underline = Some((*ls, VerticalBound::Top));
-                                self.label_multi_top_left(severity, label_style)?
+                                self.label_multi_top_left(severity, label_style)?;
                             }
                             MultiLabel::Bottom(..) if multi_label_index == *i => {
                                 underline = Some((*ls, VerticalBound::Bottom));
@@ -585,7 +585,7 @@ impl<'writer, 'config> Renderer<'writer, 'config> {
             match bottom_message {
                 None => self.label_multi_top_caret(severity, label_style, source, *range)?,
                 Some(message) => {
-                    self.label_multi_bottom_caret(severity, label_style, source, *range, message)?
+                    self.label_multi_bottom_caret(severity, label_style, source, *range, message)?;
                 }
             }
         }

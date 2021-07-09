@@ -72,7 +72,7 @@ where
     /// This will mean that any outstanding byte indexes will now point to
     /// invalid locations.
     pub fn update(&mut self, file_id: FileId, source: Source) {
-        self.get_mut(file_id).update(source)
+        self.get_mut(file_id).update(source);
     }
 
     /// Get a the source file using the file id.
@@ -115,12 +115,13 @@ where
     ///     .map(|line| files.line_span(file_id, line).unwrap())
     ///     .collect::<Vec<_>>();
     ///
-    /// assert_eq!(line_sources,
+    /// assert_eq!(
+    ///     line_sources,
     ///     [
-    ///         Span::new(0, 4),    // 0: "foo\n"
-    ///         Span::new(4, 9),    // 1: "bar\r\n"
-    ///         Span::new(9, 10),   // 2: ""
-    ///         Span::new(10, 13),  // 3: "baz"
+    ///         Span::new(0, 4),   // 0: "foo\n"
+    ///         Span::new(4, 9),   // 1: "bar\r\n"
+    ///         Span::new(9, 10),  // 2: ""
+    ///         Span::new(10, 13), // 3: "baz"
     ///     ]
     /// );
     /// assert!(files.line_span(file_id, 4).is_err());
@@ -211,9 +212,12 @@ where
     /// use codespan::{Files, Span};
     ///
     /// let mut files = Files::new();
-    /// let file_id = files.add("test",  "hello world!");
+    /// let file_id = files.add("test", "hello world!");
     ///
-    /// assert_eq!(files.source_slice(file_id, Span::new(0, 5)).unwrap(), "hello");
+    /// assert_eq!(
+    ///     files.source_slice(file_id, Span::new(0, 5)).unwrap(),
+    ///     "hello"
+    /// );
     /// assert!(files.source_slice(file_id, Span::new(0, 100)).is_err());
     /// ```
     pub fn source_slice(&self, file_id: FileId, span: impl Into<Span>) -> Result<&str, Error> {

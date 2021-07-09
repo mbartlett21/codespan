@@ -294,7 +294,7 @@ impl<W: Write> WriteColor for SvgWriter<W> {
             }
 
             Ok(false)
-        };
+        }
 
         fn write_color<W: Write>(color: &Color, writer: &mut SvgWriter<W>) -> io::Result<()> {
             match color {
@@ -309,7 +309,7 @@ impl<W: Write> WriteColor for SvgWriter<W> {
                 // TODO: other colors
                 _ => Ok(()),
             }
-        };
+        }
 
         if let Some(fg) = spec.fg() {
             first = write_first(first, self)?;
